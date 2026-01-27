@@ -33,7 +33,7 @@ function preOrder(node, parent_node = false, parent = false, level) {
         };
     } else if (parent.left && parent.left == node) {
         new_node = {
-            x: parent_node.x - ((10 + level) * level),
+            x: parent_node.x - (15 * level),
             y: parent_node.y + 40,
             diameter: diameter,
             type: 'left',
@@ -42,7 +42,7 @@ function preOrder(node, parent_node = false, parent = false, level) {
         };
     } else if (parent.right && parent.right == node) {
         new_node = {
-            x: parent_node.x + ((10 + level) * level),
+            x: parent_node.x + (15 * level),
             y: parent_node.y + 40,
             diameter: diameter,
             type: 'right',
