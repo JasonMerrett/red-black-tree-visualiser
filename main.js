@@ -76,6 +76,6 @@ function draw() {
         fill(node.colour)
         circle(node.x, node.y, node.diameter);
         fill('white');
-        text(node.value, node.x -4, node.y + 5);
+        text(node.value, node.x - 4, node.y + 5);
     }
 }
