@@ -53,6 +53,14 @@ function preOrder(node, parent_node = false, parent = false, level) {
     treeObj.push(new_node);
 
     // TODO: Draw line to parent
+    if (parent_node) {
+        new_node['line'] = {
+            x1: parent_node.x,
+            y1: parent_node.y,
+            x2: new_node.x,
+            y2: new_node.y
+        }
+    }
 
     preOrder(node.left, new_node, node, level - 1);
 
@@ -73,8 +81,14 @@ function draw() {
     background(200);
 
     for (const node of treeObj) {
+        if (node.line) {
+            line(node.line.x1, node.line.y1, node.line.x2, node.line.y2);
+        }
+    }
+
+    for (const node of treeObj) {
         fill(node.colour)
-        circle(node.x, node.y, node.diameter);
+        circle(node.x, node.y, node.diameter);        
         fill('white');
         text(node.value, node.x - 4, node.y + 5);
     }
