@@ -22,6 +22,7 @@ function preOrder(node, parent_node = false, parent = false, level) {
 
     console.log('parent node', parent_node);
 
+    // TODO: Fix spacing between left and right child - should be depandant on parents spacing.
     if (!parent) {
         new_node = {
             x: width/2,
@@ -32,7 +33,7 @@ function preOrder(node, parent_node = false, parent = false, level) {
         };
     } else if (parent.left && parent.left == node) {
         new_node = {
-            x: parent_node.x - (15 * level),
+            x: parent_node.x - ((10 + level) * level),
             y: parent_node.y + 40,
             diameter: diameter,
             type: 'left',
@@ -41,7 +42,7 @@ function preOrder(node, parent_node = false, parent = false, level) {
         };
     } else if (parent.right && parent.right == node) {
         new_node = {
-            x: parent_node.x + (15 * level),
+            x: parent_node.x + ((10 + level) * level),
             y: parent_node.y + 40,
             diameter: diameter,
             type: 'right',
@@ -52,7 +53,6 @@ function preOrder(node, parent_node = false, parent = false, level) {
 
     treeObj.push(new_node);
 
-    // TODO: Draw line to parent
     if (parent_node) {
         new_node['line'] = {
             x1: parent_node.x,
