@@ -1,6 +1,6 @@
 tree = new RBTree();
 
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 20; i++) {
     tree.insert(i);
 }
 
@@ -27,7 +27,8 @@ function preOrder(node, parent_node = false, parent = false, level) {
             x: width/2,
             y: 50,
             diameter: diameter,
-            colour: node.red ? 'red' : 'black'
+            colour: node.red ? 'red' : 'black',
+            value: node.val
         };
     } else if (parent.left && parent.left == node) {
         new_node = {
@@ -35,7 +36,8 @@ function preOrder(node, parent_node = false, parent = false, level) {
             y: parent_node.y + 40,
             diameter: diameter,
             type: 'left',
-            colour: node.red ? 'red' : 'black'
+            colour: node.red ? 'red' : 'black',
+            value: node.val
         };
     } else if (parent.right && parent.right == node) {
         new_node = {
@@ -43,7 +45,8 @@ function preOrder(node, parent_node = false, parent = false, level) {
             y: parent_node.y + 40,
             diameter: diameter,
             type: 'right',
-            colour: node.red ? 'red' : 'black'
+            colour: node.red ? 'red' : 'black',
+            value: node.val
         };
     }
 
@@ -72,5 +75,7 @@ function draw() {
     for (const node of treeObj) {
         fill(node.colour)
         circle(node.x, node.y, node.diameter);
+        fill('white');
+        text(node.value, node.x -4, node.y + 5);
     }
 }
