@@ -7,11 +7,11 @@ for (let i = 0; i < 20; i++) {
 // console.log(tree);
 // console.log('height: ', tree.height());
 
-const height = 400;
-const width = 400;
+const height = 800;
+const width = 800;
 const diameter = 25;
-const treeObj = [];
-const treeHeight = tree.height();
+let treeObj = [];
+let treeHeight = tree.height();
 
 function preOrder(node, parent_node = false, parent = false, level) {
     if (!node) return;
@@ -23,6 +23,7 @@ function preOrder(node, parent_node = false, parent = false, level) {
     console.log('parent node', parent_node);
 
     // TODO: Fix spacing between left and right child - should be depandant on parents spacing.
+    console.log('level: ', level)
     if (!parent) {
         new_node = {
             x: width/2,
@@ -67,7 +68,12 @@ function preOrder(node, parent_node = false, parent = false, level) {
     preOrder(node.right, new_node, node, level - 1);
 }
 
+let valueInput;
+let button;
+
 function setupTree() {
+    treeObj = [];
+    treeHeight = tree.height();
     preOrder(tree.root, false, false, treeHeight);
     console.log('tree: ', treeObj);
 }
@@ -75,6 +81,24 @@ function setupTree() {
 function setup() {
     setupTree();
     createCanvas(width, height);
+    
+    valueInput = createInput();
+    valueInput.position(50, 800 - 50);
+    valueInput.style('backgroundColor', 'white');
+
+    button = createButton('submit');
+    button.position(valueInput.x + valueInput.width + 5, 800 - 50);
+    button.style('backgroundColor', 'white');
+    button.mousePressed(addValue);
+}
+
+function addValue() {
+    let value = valueInput.value();
+
+    valueInput.value('');
+
+    tree.insert(value);
+    setupTree();
 }
 
 function draw() {
