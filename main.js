@@ -30,25 +30,25 @@ function preOrder(node, parent_node = false, parent = false, level) {
             y: 50,
             diameter: diameter,
             colour: node.red ? 'red' : 'black',
-            value: node.val
+            value: width/2
         };
     } else if (parent.left && parent.left == node) {
         new_node = {
-            x: parent_node.x - (15 * level),
+            x: tree.root == parent ? parent_node.x - (15 * level) : parent_node.x - ((15 * level) - ((15 * level) * 0.66)),
             y: parent_node.y + 40,
             diameter: diameter,
             type: 'left',
             colour: node.red ? 'red' : 'black',
-            value: node.val
+            value: tree.root == parent ? parent_node.x - (15 * level) : parent_node.x - ((15 * level) - ((15 * level) * 0.66))
         };
     } else if (parent.right && parent.right == node) {
         new_node = {
-            x: parent_node.x + (15 * level),
+            x: tree.root == parent ? parent_node.x + (15 * level) : parent_node.x + ((15 * level) - ((15 * level) * 0.66)),
             y: parent_node.y + 40,
             diameter: diameter,
             type: 'right',
             colour: node.red ? 'red' : 'black',
-            value: node.val
+            value: tree.root == parent ? parent_node.x + (15 * level) : parent_node.x + ((15 * level) - ((15 * level) * 0.66))
         };
     }
 
